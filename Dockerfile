@@ -1,3 +1,3 @@
 FROM debian:jessie
-COPY build/shorty /usr/bin/shorty
+COPY bin/shorty /usr/bin/shorty
 CMD ["shorty"]
