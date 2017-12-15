@@ -14,6 +14,7 @@ compile:
   - make build
 test:
   override:
+  - sudo apt-get update
   - sudo apt-get install -y postgresql-client
   - bash integration_tests.sh
   post:
@@ -24,6 +25,8 @@ deployment:
     commands:
     - $HOME/ci-scripts/circleci/docker-publish $DOCKER_USER $DOCKER_PASS "$DOCKER_EMAIL" $DOCKER_ORG
     - $HOME/ci-scripts/circleci/catapult-publish $CATAPULT_URL $CATAPULT_USER $CATAPULT_PASS shorty
+    - $HOME/ci-scripts/circleci/dapple-deploy $DAPPLE_URL $DAPPLE_USER $DAPPLE_PASS $APP_NAME clever-dev no-confirm-deploy
+    - $HOME/ci-scripts/circleci/dapple-deploy $DAPPLE_URL $DAPPLE_USER $DAPPLE_PASS $APP_NAME production confirm-then-deploy
     branch: master
   non-master:
     owner: Clever
