@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  branch = "master"
-  name = "github.com/Clever/shorty"
-  packages = ["db","routes"]
-  revision = "9b442522e4204ffa2349af90e4d6f4924aa32138"
-
-[[projects]]
   name = "github.com/garyburd/redigo"
   packages = ["internal","redis"]
   revision = "9d4db5d1dbeff473d50e1bb82f5405c8cca0f0ac"
@@ -41,6 +35,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "01979309685dd9cde6083185c8c678b95ec6b8822e535d12c3026d7351a58bf0"
+  inputs-digest = "f75fe1ec04d615d20f99517fabec38b2f03d7a64e7b1b6bcb55e9e1ba80f7aa9"
   solver-name = "gps-cdcl"
   solver-version = 1

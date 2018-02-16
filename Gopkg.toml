@@ -22,10 +22,6 @@
 
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/Clever/shorty"
-
-[[constraint]]
   name = "github.com/garyburd/redigo"
 
 [[constraint]]
