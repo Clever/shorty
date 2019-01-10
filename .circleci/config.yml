@@ -18,6 +18,7 @@ jobs:
     - run:
         command: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
         name: Set up CircleCI artifacts directories
+    - run: sudo apt-get update
     - run:
         command: sudo apt-get install postgresql
         name: Install psql
@@ -34,7 +35,6 @@ jobs:
         name: Wait for postgres database to be ready
     - run: make install_deps
     - run: make build
-    - run: sudo apt-get update
     - run: sudo apt-get install -y postgresql-client
     - run: bash integration_tests.sh
     - run: $HOME/ci-scripts/circleci/docker-publish $DOCKER_USER $DOCKER_PASS "$DOCKER_EMAIL" $DOCKER_ORG
