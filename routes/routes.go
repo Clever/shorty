@@ -146,9 +146,10 @@ func ListHandler(db database.ShortenBackend) func(http.ResponseWriter, *http.Req
 
 // RedirectHandler redirects users to their desired location.
 // Not accessed via Ajax, just by end users
-func RedirectHandler(db database.ShortenBackend, domain string) func(http.ResponseWriter, *http.Request) {
+func RedirectHandler(db database.ShortenBackend, domain, slugSeparator string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		slug := mux.Vars(r)["slug"]
+		suffix := mux.Vars(r)["suffix"]
 		long, err := db.GetLongURL(slug)
 		if err == database.ErrNotFound {
 			w.WriteHeader(404)
@@ -161,7 +162,7 @@ func RedirectHandler(db database.ShortenBackend, domain string) func(http.Respon
 			w.Write([]byte(err.Error()))
 			return
 		}
-		http.Redirect(w, r, long, 302)
+		http.Redirect(w, r, fmt.Sprintf("%s%s%s", long, slugSeparator, suffix), 302)
 		return
 	}
 }

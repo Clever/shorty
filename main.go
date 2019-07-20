@@ -62,7 +62,8 @@ func main() {
 	r.HandleFunc("/meta", routes.MetaHandler(*protocol, *domain)).Methods("GET")
 	r.PathPrefix("/Shortener.jsx").Handler(http.FileServer(http.Dir("./static")))
 	r.PathPrefix("/favicon.png").Handler(http.FileServer(http.Dir("./static")))
-	r.HandleFunc("/{slug}", routes.RedirectHandler(sdb, *domain)).Methods("GET")
+	r.HandleFunc("/{slug}", routes.RedirectHandler(sdb, *domain, "")).Methods("GET")
+	r.HandleFunc("/{slug}/{suffix}", routes.RedirectHandler(sdb, *domain, "/")).Methods("GET")
 	r.HandleFunc("/health/check", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "STATUS OK")
 	})
