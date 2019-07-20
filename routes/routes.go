@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	database "github.com/Clever/shorty/db"
@@ -72,6 +73,11 @@ func ShortenHandler(db database.ShortenBackend) func(http.ResponseWriter, *http.
 		slug := r.PostForm.Get("slug")
 		longURL := r.PostForm.Get("long_url")
 		owner := r.PostForm.Get("owner")
+
+		if strings.Contains(slug, "/") {
+			returnJSON(nil, &httpError{fmt.Sprintf("You may not create a slug with a forward slash: %s", slug), 400}, w)
+			return
+		}
 
 		for _, res := range reserved {
 			if slug == res {
