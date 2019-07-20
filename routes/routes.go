@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	database "github.com/Clever/shorty/db"
@@ -72,6 +73,11 @@ func ShortenHandler(db database.ShortenBackend) func(http.ResponseWriter, *http.
 		slug := r.PostForm.Get("slug")
 		longURL := r.PostForm.Get("long_url")
 		owner := r.PostForm.Get("owner")
+
+		if strings.Contains(slug, "/") {
+			returnJSON(nil, &httpError{fmt.Sprintf("You may not create a slug with a forward slash: %s", slug), 400}, w)
+			return
+		}
 
 		for _, res := range reserved {
 			if slug == res {
@@ -146,9 +152,10 @@ func ListHandler(db database.ShortenBackend) func(http.ResponseWriter, *http.Req
 
 // RedirectHandler redirects users to their desired location.
 // Not accessed via Ajax, just by end users
-func RedirectHandler(db database.ShortenBackend, domain string) func(http.ResponseWriter, *http.Request) {
+func RedirectHandler(db database.ShortenBackend, domain, slugSeparator string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		slug := mux.Vars(r)["slug"]
+		suffix := mux.Vars(r)["suffix"]
 		long, err := db.GetLongURL(slug)
 		if err == database.ErrNotFound {
 			w.WriteHeader(404)
@@ -161,7 +168,7 @@ func RedirectHandler(db database.ShortenBackend, domain string) func(http.Respon
 			w.Write([]byte(err.Error()))
 			return
 		}
-		http.Redirect(w, r, long, 302)
+		http.Redirect(w, r, fmt.Sprintf("%s%s%s", long, slugSeparator, suffix), 302)
 		return
 	}
 }
