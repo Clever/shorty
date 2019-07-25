@@ -60,19 +60,33 @@ func main() {
 	// Technically someone could scrape the whole slug space to discover
 	// all the slugs, but that comes along with the territory
 	r.HandleFunc("/meta", routes.MetaHandler(*protocol, *domain)).Methods("GET")
-	r.PathPrefix("/Shortener.jsx").Handler(http.FileServer(http.Dir("./static")))
-	r.PathPrefix("/favicon.png").Handler(http.FileServer(http.Dir("./static")))
+
+	// To prevent the slug and slug/suffix routes from consuming requests for
+	// static assets, we must explicitly handle them beforehand
+	serveStatically := []string{"/css/", "/js/", "/Shortener.jsx", "/favicon.png"}
+	for _, item := range serveStatically {
+		r.PathPrefix(item).Handler(http.FileServer(http.Dir("./static")))
+	}
+
+	// IMPORTANT: Ensure health check route comes before {slug}/{suffix} since
+	// both would match "/health/check"
 	r.HandleFunc("/health/check", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "STATUS OK")
 	})
 
+	// Shortlink routes
 	r.HandleFunc("/{slug}", routes.RedirectHandler(sdb, *domain, "")).Methods("GET")
 	r.HandleFunc("/{slug}/{suffix}", routes.RedirectHandler(sdb, *domain, "/")).Methods("GET")
 
+	// Root route
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 		http.ServeFile(w, r, "./static/index.html")
 	}).Methods("GET")
+
+	// Handle any additional static assets that may exist
+	// Ideally this should never be reached because static assets
+	// are matched explicitly earlier in the waterfall
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static")))
 	http.Handle("/", r)
 
