@@ -2,27 +2,42 @@ run:
   type: docker
 elbs:
   staging:
-    - shorty-staging
+  - shorty-staging
   production:
-    - shorty
+  - shorty
 env:
-  - PG_HOST
-  - PG_PORT
-  - PG_USER
-  - PG_PASSWORD
-  - PG_SCHEMA
-  - PG_TABLE
-  - PG_DATABASE
+- PG_HOST
+- PG_PORT
+- PG_USER
+- PG_PASSWORD
+- PG_SCHEMA
+- PG_TABLE
+- PG_DATABASE
 resources:
   cpu: 0.2
 expose:
-  - name: http
-    port: 80
-    bind: 80
-    load_balancer_port: 80
-    load_balancer_proto: http
-    health_check:
-      type: http
-      path: /health/check
+- name: http
+  port: 80
+  bind: 80
+  load_balancer_port: 80
+  load_balancer_proto: http
+  health_check:
+    type: http
+    path: /health/check
 access_scope: org-wide
 team: eng-ip
+alarms:
+- type: InternalErrorAlarm
+  severity: major
+  parameters:
+    threshold: 0.10
+  extraParameters:
+    source: Total
+    errorMinimum: 5
+- type: InternalErrorAlarm
+  severity: minor
+  parameters:
+    threshold: 0.02
+  extraParameters:
+    source: Total
+    errorMinimum: 5
