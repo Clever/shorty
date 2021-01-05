@@ -24,7 +24,7 @@ expose:
     type: http
     path: /health/check
 access_scope: org-wide
-team: eng-ip
+team: eng-deip
 alarms:
 - type: InternalErrorAlarm
   severity: major
