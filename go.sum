@@ -1,0 +1,12 @@
+github.com/garyburd/redigo v0.0.0-20150814223304-9d4db5d1dbef h1:6MpjLrxJtK8zASQZcAZA7XZUHT0WqZYD0O+eDvPnguU=
+github.com/garyburd/redigo v0.0.0-20150814223304-9d4db5d1dbef/go.mod h1:NR3MbYisc3/PwhQ00EMzDiPmrwpPxAn5GI05/YaO1SY=
+github.com/gorilla/context v0.0.0-20141217160251-215affda49ad h1:wJwKN6X6iRRVnjdBgrkWjhBOvYm7yw5boqXwFUnBtbE=
+github.com/gorilla/context v0.0.0-20141217160251-215affda49ad/go.mod h1:kBGZzfjB9CEq2AlWe17Uuf7NDRt0dE0s8S51q0aT7Yg=
+github.com/gorilla/mux v0.0.0-20150505170136-94903de8c98a h1:yoRm08ul0JoF/pElPkk25tenwSNvzsZHSdg0gnOhjrw=
+github.com/gorilla/mux v0.0.0-20150505170136-94903de8c98a/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
+github.com/lib/pq v0.0.0-20150109111458-19eeca3e30d2 h1:h7lkH0++9d8ZmGzjyQwmUmGG02ax13qEYLq1B5hi6Co=
+github.com/lib/pq v0.0.0-20150109111458-19eeca3e30d2/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
+github.com/stretchr/testify v0.0.0-20150211015342-efa3c4c36479 h1:dDkw7pec5by7F2mIDYn7klqMZ4KPkpT1WSJt6ABUF/4=
+github.com/stretchr/testify v0.0.0-20150211015342-efa3c4c36479/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
+gopkg.in/Clever/kayvee-go.v3 v3.0.0 h1:2ZFxTP3fODYxOxI3UC3saYHnjz3a5AJvC0c+E3MThXs=
+gopkg.in/Clever/kayvee-go.v3 v3.0.0/go.mod h1:GMeldd8wc48O1PB0R2Hhz4TDDg+akUngDmm0H3rGm2c=
