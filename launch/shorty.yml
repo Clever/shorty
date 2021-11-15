@@ -14,7 +14,8 @@ env:
 - PG_TABLE
 - PG_DATABASE
 resources:
-  cpu: 0.2
+  cpu: 0.25
+  max_mem: 0.5
 expose:
 - name: http
   port: 80
@@ -40,3 +41,9 @@ alarms:
   extraParameters:
     source: Total
     errorMinimum: 5
+pod_config:
+  dev:
+    migrationState: deployable
+  group: org-wide
+  prod:
+    migrationState: deployable
