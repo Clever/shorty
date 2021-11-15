@@ -81,3 +81,4 @@ Set all parameters except `read-only` to the same values as the external instanc
 ```bash
 PG_HOST=my-postgres.colinschimmelfing.com PG_PASS=super_secret ./shorty --read-only=false --domain=colinshorty.com --protocol=https
 ```
+
