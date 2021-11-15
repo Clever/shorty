@@ -43,7 +43,7 @@ alarms:
     errorMinimum: 5
 pod_config:
   dev:
-    migrationState: deployable
+    migrationState: podOnly
   group: org-wide
   prod:
     migrationState: deployable
