@@ -46,4 +46,4 @@ pod_config:
     migrationState: podOnly
   group: org-wide
   prod:
-    migrationState: deployable
+    migrationState: podOnly
