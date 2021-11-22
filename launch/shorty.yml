@@ -24,7 +24,6 @@ expose:
   health_check:
     type: http
     path: /health/check
-access_scope: org-wide
 team: eng-deip
 alarms:
 - type: InternalErrorAlarm
@@ -42,8 +41,4 @@ alarms:
     source: Total
     errorMinimum: 5
 pod_config:
-  dev:
-    migrationState: podOnly
   group: org-wide
-  prod:
-    migrationState: podOnly
