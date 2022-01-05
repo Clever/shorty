@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 
 # put all static files in /var/www
 RUN mkdir -p /var/www/shorty/static

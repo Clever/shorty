@@ -1,6 +1,6 @@
 module github.com/Clever/shorty
 
-go 1.13
+go 1.16
 
 require (
 	github.com/garyburd/redigo v0.0.0-20150814223304-9d4db5d1dbef
