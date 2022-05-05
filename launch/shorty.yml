@@ -42,3 +42,8 @@ alarms:
     errorMinimum: 5
 pod_config:
   group: org-wide
+deploy_config:
+  canaryInProd: false
+  autoDeployEnvs:
+  - clever-dev
+  - production
