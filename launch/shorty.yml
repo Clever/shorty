@@ -14,8 +14,8 @@ env:
 - PG_TABLE
 - PG_DATABASE
 resources:
-  cpu: 0.25
-  max_mem: 0.5
+  cpu: 0.5
+  max_mem: 1.0
 expose:
 - name: http
   port: 80
