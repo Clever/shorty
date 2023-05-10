@@ -51,4 +51,4 @@ mesh_config:
   dev:
     state: mesh_only
   prod:
-    state: hybrid
+    state: mesh_only
