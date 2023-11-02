@@ -31,14 +31,12 @@ alarms:
   parameters:
     threshold: 0.10
   extraParameters:
-    source: Total
     errorMinimum: 5
 - type: InternalErrorAlarm
   severity: minor
   parameters:
     threshold: 0.02
   extraParameters:
-    source: Total
     errorMinimum: 5
 pod_config:
   group: org-wide
