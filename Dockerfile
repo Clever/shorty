@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm-slim
 
 # put all static files in /var/www
 RUN mkdir -p /var/www/shorty/static

@@ -63,7 +63,7 @@ func ReadOnlyHandler() func(http.ResponseWriter, *http.Request) {
 	}
 }
 
-//ShortenHandler generates a HTTP handler for a shortening URLs given a datastore backend.
+// ShortenHandler generates a HTTP handler for a shortening URLs given a datastore backend.
 func ShortenHandler(db database.ShortenBackend) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := r.ParseForm(); err != nil {
