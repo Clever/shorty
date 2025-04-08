@@ -159,7 +159,7 @@ func RedirectHandler(db database.ShortenBackend, domain, slugSeparator string) f
 		long, err := db.GetLongURL(slug)
 		if err == database.ErrNotFound {
 			w.WriteHeader(404)
-			fmt.Fprintf(w, fmt.Sprintf(errMsgTemplate, slug, domain, domain))
+			fmt.Fprint(w, fmt.Sprintf(errMsgTemplate, slug, domain, domain))
 			return
 		}
 		if err != nil {

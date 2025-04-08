@@ -8,6 +8,7 @@ _obj
 _test
 build
 node_modules
+vendor
 
 # Architecture specific extensions/prefixes
 *.[568vq]
