@@ -12,6 +12,7 @@ env:
   - PG_PASSWORD
   - PG_SCHEMA
   - PG_TABLE
+  - PG_SSL
 resources:
   cpu: 0.2
 expose:
