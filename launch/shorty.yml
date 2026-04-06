@@ -13,6 +13,7 @@ env:
 - PG_SCHEMA
 - PG_TABLE
 - PG_DATABASE
+- PG_SSL
 resources:
   cpu: 0.5
   max_mem: 1.0
