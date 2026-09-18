@@ -41,12 +41,14 @@ formatters:
 issues:
   # Only raise linter errors if the errors are on lines changed in the PR.
   new: true
+  new-from-merge-base: master
   # A value of 0 disables the max visible issues so that we can see all of
   # them at once
   max-issues-per-linter: 0
   max-same-issues: 0
 
 run:
-  # Read only means that go tool chain commands will fail if the go.mod requires changes.
-  modules-download-mode: readonly
+  # The orb's go_lint pre-steps run `go mod vendor`, so lint against the
+  # vendored tree rather than downloading modules.
+  modules-download-mode: vendor
   allow-parallel-runners: true
