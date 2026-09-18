@@ -1,0 +1,41 @@
+team: eng-deip
+
+env:
+  - name: PG_HOST
+    value: shorty-db.cml6lbpawkjm.us-west-2.rds.amazonaws.com
+  - name: PG_PORT
+    value: "5432"
+  - name: PG_USER
+    value: shortener
+  - name: PG_DATABASE
+    value: shorty
+  - name: PG_SCHEMA
+    value: shortener
+  - name: PG_TABLE
+    value: shortener
+  - name: PG_SSL
+    value: require
+
+secrets:
+  - name: PG_PASSWORD
+    path: pg-password
+
+ingress:
+  backend:
+    port: 80
+  healthcheck:
+    path: /health/check
+
+monitors:
+  - type: InternalErrorAlarm
+    severity: major
+    parameters:
+      threshold: 0.10
+    extraParameters:
+      errorMinimum: 5
+  - type: InternalErrorAlarm
+    severity: minor
+    parameters:
+      threshold: 0.02
+    extraParameters:
+      errorMinimum: 5

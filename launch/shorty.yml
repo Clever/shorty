@@ -46,6 +46,4 @@ pod_config:
   group: org-wide-us-west-2
 deploy_config:
   canaryInProd: false
-  autoDeployEnvs:
-  - clever-dev
-  - production
+  autoDeployEnvs: []

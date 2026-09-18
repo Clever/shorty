@@ -58,3 +58,11 @@ workflows:
         - aws-lambda-private
         - aws-ecr-private
         - github-app-auth
+    - clever/deploy_apps:
+        requires:
+        - clever/build_publish_deploy
+        filters:
+          branches:
+            only: master
+        context:
+        - slingshot-ci
