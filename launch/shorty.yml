@@ -1,5 +1,8 @@
 run:
   type: docker
+build:
+  artifact:
+    command: make build
 elbs:
   staging:
   - shorty-staging
