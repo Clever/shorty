@@ -18,4 +18,6 @@ env:
 
 secrets:
   - name: PG_PASSWORD
-    path: db-app-password
+    # The dev secret store actually holds `pg-password` (same as prod); the
+    # ark-config 6734 branch's `db-app-password` name was never provisioned.
+    path: pg-password
