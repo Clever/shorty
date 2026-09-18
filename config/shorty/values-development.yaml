@@ -1,0 +1,21 @@
+# Resolved from ark-config apps/shorty/development.yml — kept the
+# pod_account == "585008086734" (new dev account) branch, dropped the else.
+env:
+  - name: PG_HOST
+    value: placeholder # Placeholder, update when we have a real RDS instance for this
+  - name: PG_PORT
+    value: "5432"
+  - name: PG_USER
+    value: app_cleverdev_shorty
+  - name: PG_DATABASE
+    value: shorty
+  - name: PG_SCHEMA
+    value: shortener
+  - name: PG_TABLE
+    value: shortener
+  - name: PG_SSL
+    value: require
+
+secrets:
+  - name: PG_PASSWORD
+    path: db-app-password

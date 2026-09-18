@@ -1,0 +1,19 @@
+stack:
+  cluster:
+    matchLabels:
+      type: workload
+      # launch.yml pins the pod group to us-west-2 (pod_config.group:
+      # org-wide-us-west-2) and this migration is single-region, so target the
+      # primary-region cluster only.
+      primary: true
+  values:
+    - values.yaml
+    - values-{{ .values.environmentNamespace }}.yaml
+    - "{{ .values.environmentNamespace }}.policy"
+
+build:
+  command: make build
+
+autoDeployEnvs:
+  - clever-dev
+  - production

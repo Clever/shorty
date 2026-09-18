@@ -27,4 +27,7 @@ _testmain.go
 *.prof
 dump.rdb
 
-shorty
+# The compiled binary (root or bin/) — anchored so it does not also ignore
+# the config/shorty/ Kubernetes config directory.
+/shorty
+/bin/shorty
