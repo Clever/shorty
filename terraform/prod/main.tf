@@ -6,10 +6,13 @@ module "shared_config" {
 
 # Links table: shorty's only datastore, replacing the Postgres/RDS backend.
 # Pure key-value — partition key `slug`, no range key, no GSIs (GetList is a
-# full Scan). Link expiry maps to native DynamoDB TTL on `expires` (epoch s).
-# On-demand billing (module default PAY_PER_REQUEST). Single-region: shorty
-# runs only in us-west-2. The for_each set is a single element today; add
+# full Scan). On-demand billing (module default PAY_PER_REQUEST). Single-region:
+# shorty runs only in us-west-2. The for_each set is a single element today; add
 # regions here if that ever changes.
+#
+# No TTL: the `expires` field exists in the data model but is dormant — the
+# create route hardcodes "never", Postgres ignores it, and there's no UI to set
+# it. If link expiry is ever revived, add ttl_enabled + ttl_attribute_name here.
 module "links_table" {
   for_each = toset(["us-west-2"])
 
@@ -26,9 +29,6 @@ module "links_table" {
   attributes = [
     { name = "slug", type = "S" },
   ]
-
-  ttl_enabled        = true
-  ttl_attribute_name = "expires"
 
   server_side_encryption_enabled = true
   point_in_time_recovery_enabled = true
