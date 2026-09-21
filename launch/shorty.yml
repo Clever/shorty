@@ -14,6 +14,12 @@ env:
 - PG_TABLE
 - PG_DATABASE
 - PG_SSL
+# DynamoDB Links table (replacing Postgres/RDS). Catapult renders this into an
+# inline dynamodb-ark-db policy on the ECS task role, granting dynamodb access
+# to production--shorty-db-Links (prod) / *--shorty-db-Links (dev). {env} is
+# expanded by Catapult. See terraform/{dev,prod} for the table definitions.
+databases:
+- dynamodb:us-west-2:{env}--shorty-db-Links
 resources:
   cpu: 0.5
   max_mem: 1.0
