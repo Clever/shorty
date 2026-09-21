@@ -1,0 +1,16 @@
+name: "Atlantis"
+
+on:
+  # Issue comments target default branch so workflow definition in main (rather than PR) is used
+  issue_comment:
+    types:
+      - created
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  atlantis:
+    uses: Clever/ci-scripts/.github/workflows/atlantis.yml@master
+    secrets:
+      TWINGATE_ATLANTIS_SERVICE_KEY: ${{ secrets.TWINGATE_ATLANTIS_SERVICE_KEY }}
