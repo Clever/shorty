@@ -1,3 +1,9 @@
-# Put any outputs you may need for later reference via terraform CLI, or
-# to use as remote state in other workspaces here. If you dont need any
-# outputs, you can delete this file.
+output "links_table_name" {
+  description = "Full name of the shorty Links DynamoDB table (dev)"
+  value       = module.links_table["us-west-2"].table_name
+}
+
+output "links_table_arn" {
+  description = "ARN of the shorty Links DynamoDB table (dev)"
+  value       = module.links_table["us-west-2"].table_arn
+}

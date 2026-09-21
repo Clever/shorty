@@ -14,6 +14,8 @@ env:
 - PG_TABLE
 - PG_DATABASE
 - PG_SSL
+databases:
+- dynamodb:us-west-2:{env}--shorty-db-Links
 resources:
   cpu: 0.5
   max_mem: 1.0
