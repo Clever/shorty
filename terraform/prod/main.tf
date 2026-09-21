@@ -25,7 +25,7 @@ module "links_table" {
   server_side_encryption_enabled = true
   point_in_time_recovery_enabled = true
 
-  # writers unset: task-role IAM comes from the databases: block in launch/shorty.yml.
+  # writers unset by design: IAM is the ECS databases: block now, inline customPolicy on k8s.
 
   sso_critical               = "false"
   disaster_recovery_critical = "false"
