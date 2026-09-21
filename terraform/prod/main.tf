@@ -4,15 +4,7 @@ module "shared_config" {
   source = "git@github.com:clever/tf-modules.git//shared_config"
 }
 
-# Links table: shorty's only datastore, replacing the Postgres/RDS backend.
-# Pure key-value — partition key `slug`, no range key, no GSIs (GetList is a
-# full Scan). On-demand billing (module default PAY_PER_REQUEST). Single-region:
-# shorty runs only in us-west-2. The for_each set is a single element today; add
-# regions here if that ever changes.
-#
-# No TTL: the `expires` field exists in the data model but is dormant — the
-# create route hardcodes "never", Postgres ignores it, and there's no UI to set
-# it. If link expiry is ever revived, add ttl_enabled + ttl_attribute_name here.
+# shorty's datastore, replacing the Postgres/RDS backend (being ripped out).
 module "links_table" {
   for_each = toset(["us-west-2"])
 
@@ -33,9 +25,7 @@ module "links_table" {
   server_side_encryption_enabled = true
   point_in_time_recovery_enabled = true
 
-  # Pod access is granted on the k8s side via an inline iamPolicy.customPolicy
-  # in config/shorty (matching who-is-who / district-dashboard-task-service),
-  # not the module's writers/principal-tag policy, so `writers` is left unset.
+  # writers unset: task-role IAM comes from the databases: block in launch/shorty.yml.
 
   sso_critical               = "false"
   disaster_recovery_critical = "false"
