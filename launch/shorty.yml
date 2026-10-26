@@ -25,7 +25,7 @@ expose:
   health_check:
     type: http
     path: /health/check
-team: eng-deip
+team: eng-data-platform
 alarms:
 - type: InternalErrorAlarm
   severity: major
